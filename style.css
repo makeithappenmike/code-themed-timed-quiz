@@ -2,28 +2,51 @@
 
 }
 
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 body{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav {
     background-color: red;
+    width: 100%;
+    display: flex;
 }
 
 .nav-item {
     list-style-type: none;
+    list-style-position: inside;
     flex: 1 1 0;;
     justify-content: center;
+    width: 100%;
 }
 
 .main {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .question {
-
+    background-color: aqua;
 }
 
 .choices {
-    
+    background-color: orange;
+}
+
+.validation {
+    background-color: red;
+}
+
+.start {
+    background-color: pink;
 }
