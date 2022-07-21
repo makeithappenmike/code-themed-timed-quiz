@@ -1,0 +1,29 @@
+:root {
+
+}
+
+body{
+    display: flex;
+}
+
+.nav {
+    background-color: red;
+}
+
+.nav-item {
+    list-style-type: none;
+    flex: 1 1 0;;
+    justify-content: center;
+}
+
+.main {
+
+}
+
+.question {
+
+}
+
+.choices {
+    
+}
