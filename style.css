@@ -27,6 +27,10 @@ body{
     width: 100%;
 }
 
+.time-remaining {
+
+}
+
 .main {
     display: flex;
     flex-direction: column;
