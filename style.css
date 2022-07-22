@@ -31,6 +31,10 @@ body{
 
 }
 
+#startButton {
+    margin-bottom: 10px;
+}
+
 .main {
     display: flex;
     flex-direction: column;
@@ -39,12 +43,31 @@ body{
     flex-wrap: wrap;
 }
 
+#startButton {
+    display: block;
+}
+
+#content {
+    background-color: black;
+    width: 500p;
+    height: 50px;
+}
+
 .question {
     background-color: aqua;
 }
 
-.choices {
+#question1,
+#question2,
+#question3,
+#question4,
+#question5 {
+    display: none;
     background-color: orange;
+}
+
+.choice:hover {
+    background-color: aquamarine;
 }
 
 .validation {
