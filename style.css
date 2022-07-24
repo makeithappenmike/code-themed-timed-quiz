@@ -64,7 +64,7 @@ body{
     display: none;
 }
 
-.choice:hover {
+li:hover {
     background-color: aquamarine;
 }
 
