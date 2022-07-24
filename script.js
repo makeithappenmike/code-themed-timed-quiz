@@ -68,16 +68,23 @@ function askQuestions() {
     ];
 
     console.log(startButton);
-    // console.log(question1);
     console.log(quizQuestions[0].question);
-    console.log(quizQuestions[0].choices);
     startButton.addEventListener("click", function() {
+        var options = [];
+        options = [quizQuestions[0].choices];
         startButton.style.display = "none";
         question.textContent = quizQuestions[0].question;
         questions.style.display = "block";
-        for (i = 0; i > options.length; i++) {
-            
-        }
+        options.forEach(function(option) {
+            var option1 = option[1];
+            var option2 = option[2];
+            var option3 = option[3];
+            var option4 = option[4];
+            console.log(option1);
+            console.log(option2);
+            console.log(option3);
+            console.log(option4);
+        });
     });
 
     questions.addEventListener("click", function() {
