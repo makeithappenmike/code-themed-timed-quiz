@@ -63,7 +63,7 @@ body{
     background-color: orange;
 } */
 
-#questions {
+#questionContainer {
     display: none;
 }
 
