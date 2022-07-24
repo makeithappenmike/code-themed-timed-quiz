@@ -7,7 +7,10 @@ function askQuestions() {
     var question3 = document.getElementById("question3");
     var question4 = document.getElementById("question4");
     var question5 = document.getElementById("question5");
-    var choice = document.getElementById("choice");
+    var choice1 = document.getElementById("choice1");
+    var choice2 = document.getElementById("choice2");
+    var choice3 = document.getElementById("choice3");
+    var choice4 = document.getElementById("choice4");
     var answer1 = "";
     var answer2 = "";
     var answer3 = "";
@@ -69,6 +72,8 @@ function askQuestions() {
 
     console.log(startButton);
     console.log(quizQuestions[0].question);
+    console.log(choice1.textContent);
+    
     startButton.addEventListener("click", function() {
         var options = [];
         options = [quizQuestions[0].choices];
@@ -84,7 +89,13 @@ function askQuestions() {
             console.log(option2);
             console.log(option3);
             console.log(option4);
+            choice1.textContent = option1;
+            choice2.textContent = option2;
+            choice3.textContent = option3;
+            choice4.textContent = option4;
         });
+        
+
     });
 
     questions.addEventListener("click", function() {
