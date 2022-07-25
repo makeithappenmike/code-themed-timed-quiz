@@ -39,6 +39,8 @@ function startTimer(seconds) {
 
             // Display final score 
             // finalScore();
+        } else if (allQuestions.length == 0) {
+            clearInterval(timeAllowed);
         }
 
     }, 1000);
@@ -141,6 +143,7 @@ function showQuestion(question) {
     });
 };
  
+// Show final score
 function finalScore() {
     questionTitle.textContent = "FINAL SCORE";
     validation.textContent = "";
