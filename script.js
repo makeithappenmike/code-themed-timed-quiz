@@ -5,6 +5,7 @@ var questionTitle = document.getElementById("questionTitle");
 var questionContainer = document.getElementById("questionContainer");
 var validation = document.getElementById("validation");
 var correct, incorrect
+var questionsAsked, questionsRemaining
 
 // const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answerButton");
@@ -45,31 +46,41 @@ function startTimer(seconds) {
 
 // Start Quiz
 function startQuiz() {
+
     console.log("Quiz Started");
     correct = 0;
     incorrect = 0;
+    questionsAsked = 0;
+    questionsRemaining = 5;
+    
     // Get random question
     allQuestions = quizQuestions.sort(() => Math.random() - .5);
     activeQuestion = 0;
     startButton.style.display = "none";
     // Show options on screen
     questionContainer.style.display = "block";
+    questionsAsked++;
+    questionsRemaining--;
+    // console.log("Questions Asked: " + questionsAsked);
+    // console.log("Questions Remaining: " + questionsRemaining);
     getNextQuestion();
-
-};
+}; 
 
 function getNextQuestion() {
     resetQuestion();
     showQuestion(allQuestions[activeQuestion]);
+    console.log("Questions Asked: " + questionsAsked);
+    console.log("Questions Remaining: " + questionsRemaining);
+
 };
 
 function showQuestion(question) {
 
     question.choices.forEach(choice => {
         // console.log(quizQuestions[activeQuestion].question);
-        console.log(choice.text);
+        // console.log(choice.text);
         questionTitle.textContent = quizQuestions[activeQuestion].question;
-        console.log("Answer:", quizQuestions[activeQuestion].answer);
+        // console.log("Answer:", quizQuestions[activeQuestion].answer);
         const choices = document.createElement("li");
         choices.innerHTML = choice.text;
         document.getElementById("questionContainer").appendChild(choices);
@@ -77,22 +88,28 @@ function showQuestion(question) {
             console.log("Clicked:", event.target.textContent);
             if (event.target.textContent == quizQuestions[activeQuestion].answer) {
                 console.log("correct");
-                correct++
+                correct++;
                 console.log("Total Correct:", correct);
-                validation.textContent = "Correct";
+                validation.textContent = "Correct! Total Correct:" + correct;
+                questionsAsked++;
+                questionsRemaining--;
                 activeQuestion++;
+                console.log("AQ " + activeQuestion);
+                console.log(quizQuestions);
                 getNextQuestion();
-            } else {
+            } else if (event.target.textContent != quizQuestions[activeQuestion].answer) {
                 console.log("Incorrect");
-                incorrect++
+                incorrect++;
                 console.log("Total Incorrect:", incorrect);
-                validation.textContent = "Incorrect";
+                validation.textContent = "Incorrect! Total Correct:" + correct + "Questions Remaining:" + questionsRemaining;
+                questionsAsked++;
+                 questionsRemaining--;
                 activeQuestion++;
+                console.log("AQ " + activeQuestion);
                 getNextQuestion();
-        };
+        }
         });
 
-        // choices.addEventListener("click", chooseAnswer);
     });
 };
 
@@ -106,53 +123,51 @@ function resetQuestion() {
 
 const quizQuestions = [
     {
-        question: "Question 1",
+        question: "What is 2+2?",
         choices: [
-           { text: "Q1 Answer1", correct: false },
-           { text: "Q1 Answer2", correct: false },
-           { text: "Q1 Answer3", correct: true },
-           { text: "Q1 Answer4", correct: false }
+           { text: "4" },
+           { text: "9" },
+           { text: "Null" },
+           { text: "8" }
         ],
-        answer: "Q1 Answer3"
+        answer: "4"
     },
     {
-        question: "Question 2",
+        question: "What is a Semantic element?",
         choices: [
-           { text: "Q2 Answer1", correct: false },
-           { text: "Q2 Answer2", correct: false },
-           { text: "Q2 Answer3", correct: true },
-           { text: "Q2 Answer4", correct: false }
+           { text: "An element with color" },
+           { text: "An element with meaning" },
+           { text: "An element with the same width and height" },
+           { text: "An element with no background" }
         ],
-        answer: "Q2 Answer3"
+        answer: "An element with meaning"
     },
     {
-        question: "Question 3",
+        question: "Can you nest functions?",
         choices: [
-           { text: "Q3 Answer1", correct: false },
-           { text: "Q3 Answer2", correct: false },
-           { text: "Q3 Answer3", correct: true },
-           { text: "Q3 Answer4", correct: false }
+           { text: "Yes" },
+           { text: "No" }
         ],
-        answer: "Q3 Answer3"
+        answer: "Yes"
     },
     {
-        question: "Question 4",
+        question: "What is JSON?",
         choices: [
-           { text: "Q4 Answer1", correct: false },
-           { text: "Q4 Answer2", correct: false },
-           { text: "Q4 Answer3", correct: true },
-           { text: "Q4 Answer4", correct: false }
+           { text: "The name of the person that invented JavaScript" },
+           { text: "Just Sign On Null" },
+           { text: "It doesn't mean anything" },
+           { text: "JavaScript Object Notation" }
         ],
-        answer: "Q4 Answer3"
+        answer: "JavaScript Object Notation"
     },
     {
-        question: "Question 5",
+        question: "Where you can read more?",
         choices: [
-           { text: "Q5 Answer1", correct: false },
-           { text: "Q5 Answer2", correct: false },
-           { text: "Q5 Answer3", correct: true },
-           { text: "Q5 Answer4", correct: false }
+           { text: "The Library" },
+           { text: "Documentation" },
+           { text: "Your room" },
+           { text: "The back of your computer" }
         ],
-        answer: "Q5 Answer3"
+        answer: "Documentation"
     }
     ]
