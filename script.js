@@ -130,13 +130,13 @@ function showQuestion(question) {
                     finalScore();
                 };
             
-                // // Ask next question
-                // getNextQuestion();
+                // Ask next question
+                getNextQuestion();
 
         }
         
-        // Ask next question
-        getNextQuestion();
+        // // Ask next question
+        // getNextQuestion();
 
         });
 
@@ -144,6 +144,7 @@ function showQuestion(question) {
 };
  
 function finalScore() {
+    questionContainer.textContent = message;
     questionTitle.textContent = "FINAL SCORE";
     validation.textContent = "";
     var newLine = "\r\n";
