@@ -1,4 +1,5 @@
 const startButton = document.getElementById("startButton");
+const answerButtonsElement = document.getElementById("answerButton");
 startButton.addEventListener("click", function() {startTimer(10)});
 startButton.addEventListener("click", function() {startQuiz()});
 var questionTitle = document.getElementById("questionTitle");
@@ -6,13 +7,11 @@ var questionContainer = document.getElementById("questionContainer");
 var validation = document.getElementById("validation");
 var correct, incorrect
 var questionsAsked, questionsRemaining
-
-const answerButtonsElement = document.getElementById("answerButton");
-
-var choice1 = document.getElementById("choice1");
-var choice2 = document.getElementById("choice2");
-var choice3 = document.getElementById("choice3");
-var choice4 = document.getElementById("choice4");
+var highScore = localStorage.getItem("highScore");
+// var choice1 = document.getElementById("choice1");
+// var choice2 = document.getElementById("choice2");
+// var choice3 = document.getElementById("choice3");
+// var choice4 = document.getElementById("choice4");
 
 let allQuestions, activeQuestion
 
@@ -35,12 +34,10 @@ function startTimer(seconds) {
             document.getElementById("time-remaining").innerHTML = counter;
             clearInterval(timeAllowed);
             document.getElementById("time-remaining").innerHTML = "0";
-            console.log("Time's up!");
-
-            // Display final score 
-            // finalScore();
+            finalScore("Time's up!");
         } else if (allQuestions.length == 0) {
             clearInterval(timeAllowed);
+            // finalScore("Quiz Complete!");
         }
 
     }, 1000);
@@ -49,9 +46,6 @@ function startTimer(seconds) {
 
 // Start Quiz
 function startQuiz() {
-
-    // Log start
-    console.log("Quiz Started");
 
     // Set defaults
     correct = 0;
@@ -114,9 +108,8 @@ function showQuestion(question) {
 
                 // Remove activeQuestion from available questions
                 allQuestions.shift();
-                console.log("QR: " + allQuestions.length);
                 if (allQuestions.length == 0) {
-                    finalScore();
+                    finalScore("Quiz Complete!");
                 } else {
                     // Ask next question
                     getNextQuestion();
@@ -129,9 +122,8 @@ function showQuestion(question) {
 
                 // Remove activeQuestion from available questions
                 allQuestions.shift();
-                console.log("QR: " + allQuestions.length);
                 if (allQuestions.length == 0) {
-                    finalScore();
+                    finalScore("Quiz Complete!");
                 } else {
                     // Ask next question
                     getNextQuestion();
@@ -144,15 +136,17 @@ function showQuestion(question) {
 };
  
 // Show final score
-function finalScore() {
+function finalScore(message) {
     questionTitle.textContent = "FINAL SCORE";
     validation.textContent = "";
     var newLine = "\r\n";
-    var message = "Game Over!";
     message += newLine;
     message += "Final Score: " + correct + "/5";
     questionContainer.textContent = message;
     alert(message);
+    if (count > highScore) {
+        localStorage.setItem("highScore", correct);
+    };
 };
 
 // Reset content
