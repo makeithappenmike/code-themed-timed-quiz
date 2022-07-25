@@ -31,16 +31,15 @@ function startTimer(seconds) {
         document.getElementById("time-remaining").innerHTML = counter + 1;
 
         // When counter reaches 0, stop counting down
-        if (counter < 0 ) {
+        if (counter < 0) {
             document.getElementById("time-remaining").innerHTML = counter;
             clearInterval(timeAllowed);
             document.getElementById("time-remaining").innerHTML = "0";
             console.log("Time's up!");
 
             // Display final score 
-            finalScore();
+            // finalScore();
         }
-    
 
     }, 1000);
 
@@ -114,9 +113,12 @@ function showQuestion(question) {
                 // Remove activeQuestion from available questions
                 allQuestions.shift();
                 console.log("QR: " + allQuestions.length);
-
-                // // Ask next question
-                // getNextQuestion();
+                if (allQuestions.length == 0) {
+                    finalScore();
+                } else {
+                    // Ask next question
+                    getNextQuestion();
+                };
             } 
             else if (event.target.textContent != quizQuestions[activeQuestion].answer) {
 
@@ -128,15 +130,11 @@ function showQuestion(question) {
                 console.log("QR: " + allQuestions.length);
                 if (allQuestions.length == 0) {
                     finalScore();
+                } else {
+                    // Ask next question
+                    getNextQuestion();
                 };
-            
-                // Ask next question
-                getNextQuestion();
-
         }
-        
-        // // Ask next question
-        // getNextQuestion();
 
         });
 
@@ -144,7 +142,6 @@ function showQuestion(question) {
 };
  
 function finalScore() {
-    questionContainer.textContent = message;
     questionTitle.textContent = "FINAL SCORE";
     validation.textContent = "";
     var newLine = "\r\n";
