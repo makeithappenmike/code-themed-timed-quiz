@@ -1,5 +1,5 @@
 const startButton = document.getElementById("startButton");
-startButton.addEventListener("click", function() {startTimer(3)});
+startButton.addEventListener("click", function() {startTimer(10)});
 startButton.addEventListener("click", function() {startQuiz()});
 var questionTitle = document.getElementById("questionTitle");
 var questionContainer = document.getElementById("questionContainer");
@@ -36,6 +36,9 @@ function startTimer(seconds) {
             clearInterval(timeAllowed);
             document.getElementById("time-remaining").innerHTML = "0";
             console.log("Time's up!");
+
+            // Display final score 
+            finalScore();
         }
     
 
@@ -98,56 +101,65 @@ function showQuestion(question) {
         
         // Listen for a click and use the Target ID to detemine if correct / incorrect
         choices.addEventListener("click", function(event) {
-            // console.log("Clicked:", event.target.textContent);
 
             // If its the correct answer
             if (event.target.textContent == quizQuestions[activeQuestion].answer) {
-                // console.log("correct");
 
                 // Increment the correct count
                 correct++;
-                // console.log("Total Correct:", correct);
 
                 // Show results below
                 validation.textContent = "Correct! Current Score:" + correct + "/5";
 
-                // Increment # questionsAsked
-                // questionsAsked++;
-                // questionsRemaining--;
+                // Remove activeQuestion from available questions
+                allQuestions.shift();
+                console.log("QR: " + allQuestions.length);
 
-                // activeQuestion++;
-                // console.log("AQ " + activeQuestion);
+                // // Ask next question
+                // getNextQuestion();
+            } 
+            else if (event.target.textContent != quizQuestions[activeQuestion].answer) {
+
+                // Show results below
+                validation.textContent = "Incorrect! Current Score:" + correct + "/5";
 
                 // Remove activeQuestion from available questions
                 allQuestions.shift();
-                console.log(quizQuestions);
-                getNextQuestion();
-            } 
-            else if (event.target.textContent != quizQuestions[activeQuestion].answer) {
-                // console.log("Incorrect");
-                console.log("Total Incorrect:", incorrect);
-                validation.textContent = "Incorrect! Current Score:" + correct + "/5";
-                questionsAsked++;
-                 questionsRemaining--;
-                activeQuestion++;
-                console.log("AQ " + activeQuestion);
-                allQuestions.shift();
-                console.log(quizQuestions);
-                getNextQuestion();
+                console.log("QR: " + allQuestions.length);
+                if (allQuestions.length == 0) {
+                    finalScore();
+                };
+            
+                // // Ask next question
+                // getNextQuestion();
+
         }
+        
+        // Ask next question
+        getNextQuestion();
+
         });
 
     });
 };
-
-function chooseAnswer(e) {
-    
+ 
+function finalScore() {
+    questionTitle.textContent = "FINAL SCORE";
+    validation.textContent = "";
+    var newLine = "\r\n";
+    var message = "Game Over!";
+    message += newLine;
+    message += "Final Score: " + correct + "/5";
+    questionContainer.textContent = message;
+    alert(message);
 };
 
+// Reset content
 function resetQuestion() {
     questionContainer.textContent = "";
 };
 
+// Define questions and answers
 const quizQuestions = [
     {
         question: "What is 2+2?",
