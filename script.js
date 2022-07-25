@@ -7,7 +7,6 @@ var validation = document.getElementById("validation");
 var correct, incorrect
 var questionsAsked, questionsRemaining
 
-// const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answerButton");
 
 var choice1 = document.getElementById("choice1");
@@ -47,65 +46,93 @@ function startTimer(seconds) {
 // Start Quiz
 function startQuiz() {
 
+    // Log start
     console.log("Quiz Started");
+
+    // Set defaults
     correct = 0;
     incorrect = 0;
     questionsAsked = 0;
-    questionsRemaining = 5;
-    
-    // Get random question
-    allQuestions = quizQuestions.sort(() => Math.random() - .5);
     activeQuestion = 0;
+    
+    // Get random question from quizQuestions
+    allQuestions = quizQuestions.sort(() => Math.random() - .5);
+
+    // Hide Start button
     startButton.style.display = "none";
-    // Show options on screen
+
+    // Show question 1
     questionContainer.style.display = "block";
+
+    // Increment question count
     questionsAsked++;
-    questionsRemaining--;
-    // console.log("Questions Asked: " + questionsAsked);
-    // console.log("Questions Remaining: " + questionsRemaining);
+
+    // Ask next question
     getNextQuestion();
 }; 
 
+// Get next question
 function getNextQuestion() {
+
+    // Reset elements on screen 
     resetQuestion();
+
+    // Show activeQuestion on screen
     showQuestion(allQuestions[activeQuestion]);
-    console.log("Questions Asked: " + questionsAsked);
-    console.log("Questions Remaining: " + questionsRemaining);
 
 };
 
+// Show a question on the screen
 function showQuestion(question) {
 
+    // Loop through Choices from activeQuestion
     question.choices.forEach(choice => {
-        // console.log(quizQuestions[activeQuestion].question);
-        // console.log(choice.text);
+        
+        // Set question Title to activeQuestion question
         questionTitle.textContent = quizQuestions[activeQuestion].question;
-        // console.log("Answer:", quizQuestions[activeQuestion].answer);
+
+        // Create a new LI and place it in the questionContainer
         const choices = document.createElement("li");
         choices.innerHTML = choice.text;
         document.getElementById("questionContainer").appendChild(choices);
+        
+        // Listen for a click and use the Target ID to detemine if correct / incorrect
         choices.addEventListener("click", function(event) {
-            console.log("Clicked:", event.target.textContent);
+            // console.log("Clicked:", event.target.textContent);
+
+            // If its the correct answer
             if (event.target.textContent == quizQuestions[activeQuestion].answer) {
-                console.log("correct");
+                // console.log("correct");
+
+                // Increment the correct count
                 correct++;
-                console.log("Total Correct:", correct);
-                validation.textContent = "Correct! Total Correct:" + correct;
-                questionsAsked++;
-                questionsRemaining--;
-                activeQuestion++;
-                console.log("AQ " + activeQuestion);
+                // console.log("Total Correct:", correct);
+
+                // Show results below
+                validation.textContent = "Correct! Current Score:" + correct + "/5";
+
+                // Increment # questionsAsked
+                // questionsAsked++;
+                // questionsRemaining--;
+
+                // activeQuestion++;
+                // console.log("AQ " + activeQuestion);
+
+                // Remove activeQuestion from available questions
+                allQuestions.shift();
                 console.log(quizQuestions);
                 getNextQuestion();
-            } else if (event.target.textContent != quizQuestions[activeQuestion].answer) {
-                console.log("Incorrect");
-                incorrect++;
+            } 
+            else if (event.target.textContent != quizQuestions[activeQuestion].answer) {
+                // console.log("Incorrect");
                 console.log("Total Incorrect:", incorrect);
-                validation.textContent = "Incorrect! Total Correct:" + correct + "Questions Remaining:" + questionsRemaining;
+                validation.textContent = "Incorrect! Current Score:" + correct + "/5";
                 questionsAsked++;
                  questionsRemaining--;
                 activeQuestion++;
                 console.log("AQ " + activeQuestion);
+                allQuestions.shift();
+                console.log(quizQuestions);
                 getNextQuestion();
         }
         });
