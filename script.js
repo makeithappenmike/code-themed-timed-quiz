@@ -5,15 +5,24 @@ startButton.addEventListener("click", function() {startQuiz()});
 var questionTitle = document.getElementById("questionTitle");
 var questionContainer = document.getElementById("questionContainer");
 var validation = document.getElementById("validation");
-var correct, incorrect
+var correct
 var questionsAsked, questionsRemaining
-var highScore = localStorage.getItem("highScore");
+var highScore = document.getElementById("high-score");
+var currentHighScore = localStorage.getItem("highScore");
 // var choice1 = document.getElementById("choice1");
 // var choice2 = document.getElementById("choice2");
 // var choice3 = document.getElementById("choice3");
 // var choice4 = document.getElementById("choice4");
 
 let allQuestions, activeQuestion
+
+function setHighScore() {
+    if (!currentHighScore) {
+        document.getElementById("high-score").innerHTML = "-";
+    } else {
+    document.getElementById("high-score").innerHTML = currentHighScore;
+};
+}; setHighScore();
 
 // Create timer
 function startTimer(seconds) {
@@ -37,7 +46,6 @@ function startTimer(seconds) {
             finalScore("Time's up!");
         } else if (allQuestions.length == 0) {
             clearInterval(timeAllowed);
-            // finalScore("Quiz Complete!");
         }
 
     }, 1000);
@@ -49,7 +57,6 @@ function startQuiz() {
 
     // Set defaults
     correct = 0;
-    incorrect = 0;
     questionsAsked = 0;
     activeQuestion = 0;
     
@@ -58,6 +65,9 @@ function startQuiz() {
 
     // Hide Start button
     startButton.style.display = "none";
+
+     // Show content
+     document.getElementById("content").style.display = "block";
 
     // Show question 1
     questionContainer.style.display = "block";
@@ -94,7 +104,7 @@ function showQuestion(question) {
         choices.innerHTML = choice.text;
         document.getElementById("questionContainer").appendChild(choices);
         
-        // Listen for a click and use the Target ID to detemine if correct / incorrect
+        // Listen for a click and use the Target ID to detemine if correct
         choices.addEventListener("click", function(event) {
 
             // If its the correct answer
@@ -104,7 +114,7 @@ function showQuestion(question) {
                 correct++;
 
                 // Show results below
-                validation.textContent = "Correct! Current Score:" + correct + "/5";
+                validation.textContent = "Correct! Current Score: " + correct + "/5";
 
                 // Remove activeQuestion from available questions
                 allQuestions.shift();
@@ -118,10 +128,11 @@ function showQuestion(question) {
             else if (event.target.textContent != quizQuestions[activeQuestion].answer) {
 
                 // Show results below
-                validation.textContent = "Incorrect! Current Score:" + correct + "/5";
+                validation.textContent = "Incorrect! Current Score: " + correct + "/5";
 
                 // Remove activeQuestion from available questions
                 allQuestions.shift();
+
                 if (allQuestions.length == 0) {
                     finalScore("Quiz Complete!");
                 } else {
@@ -144,8 +155,9 @@ function finalScore(message) {
     message += "Final Score: " + correct + "/5";
     questionContainer.textContent = message;
     alert(message);
-    if (count > highScore) {
+    if (correct > currentHighScore) {
         localStorage.setItem("highScore", correct);
+        document.getElementById("high-score").innerHTML = correct;
     };
 };
 

@@ -4,6 +4,7 @@
 
 * {
     font-family: Arial, Helvetica, sans-serif;
+    
 }
 
 body{
@@ -14,7 +15,6 @@ body{
 }
 
 .nav {
-    background-color: red;
     width: 100%;
     display: flex;
 }
@@ -38,40 +38,71 @@ body{
 #startButton {
     display: block;
     margin-bottom: 10px;
+    background-color: rgb(35, 35, 35);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+}
+
+#startButton:hover {
+    background-color: rgb(80, 80, 80);
+    border-color: red;
+    cursor: pointer;
 }
 
 #content {
-    background-color: rgb(218, 112, 112);
-    width: 500p;
-    height: 100px;
-}
-
-.question {
-    background-color: aqua;
-}
-
-/* #question1,
-#question2,
-#question3,
-#question4,
-#question5,
-#score {
     display: none;
-    background-color: orange;
-} */
+    /* background-color: rgb(218, 112, 112); */
+    width: 500px;
+    height: 100%;
+}
+
+#questionContainer {
+    color: black;
+    border-radius: 5px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 2px;
+    width: 100%;
+    min-width: 200px;
+    text-align: center;
+}
+
+#questionContainer li {
+    background-color: rgb(35, 35, 35);
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 2px;
+    width: 100%;
+    min-width: 200px;
+    text-align: center;
+}
+
+#questionContainer li::first-line {
+    color: white;
+}
 
 #questionContainer {
     display: none;
+    padding-right: 15px;
 }
 
-li:hover {
-    background-color: aquamarine;
+#questionContainer li:hover {
+    background-color: rgb(80, 80, 80);
+    border-color: red;
+    cursor: pointer;
 }
 
 .validation {
-    background-color: red;
-}
-
-.start {
-    background-color: pink;
+    color: rgb(167, 167, 167);
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 2px;
+    width: 100%;
+    min-width: 200px;
+    text-align: center;
+    font-style: italic;
 }
