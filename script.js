@@ -145,6 +145,16 @@ function showQuestion(question) {
 // Show final score
 function finalScore(message) {
 
+    // Show startQuiz button
+    startButton.style.display = "block";
+    // const newGame = document.createElement("button");
+    // document.getElementById("questionContainer").appendChild(newGame);
+    startButton.addEventListener("click", function() {restartQuiz()});
+
+    function restartQuiz() {
+        window.location.reload;
+    };
+
     // Set Final Score header
     questionTitle.textContent = "FINAL SCORE";
 
@@ -158,7 +168,7 @@ function finalScore(message) {
     // message += newLine;
     // message += "form here";
     questionContainer.textContent = message;
-    questionContainer.createElement("section");
+    // questionContainer.createElement("section");
     alert(message);
 
     // Set high score
@@ -166,6 +176,7 @@ function finalScore(message) {
         localStorage.setItem("highScore", correct);
         document.getElementById("high-score").innerHTML = correct;
     };
+    
 };
 
 // Reset content
