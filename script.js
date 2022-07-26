@@ -9,10 +9,6 @@ var correct
 var questionsAsked, questionsRemaining
 var highScore = document.getElementById("high-score");
 var currentHighScore = localStorage.getItem("highScore");
-// var choice1 = document.getElementById("choice1");
-// var choice2 = document.getElementById("choice2");
-// var choice3 = document.getElementById("choice3");
-// var choice4 = document.getElementById("choice4");
 
 let allQuestions, activeQuestion
 
@@ -32,7 +28,7 @@ function startTimer(seconds) {
 
     // Timer
     var timeAllowed = setInterval(() => {
-        console.log(counter);  
+        console.log(counter);
 
         // Decrement timer
         counter--;
@@ -148,13 +144,24 @@ function showQuestion(question) {
  
 // Show final score
 function finalScore(message) {
+
+    // Set Final Score header
     questionTitle.textContent = "FINAL SCORE";
+
+    // Clear validation
     validation.textContent = "";
+
+    // Set message
     var newLine = "\r\n";
     message += newLine;
     message += "Final Score: " + correct + "/5";
+    // message += newLine;
+    // message += "form here";
     questionContainer.textContent = message;
+    questionContainer.createElement("section");
     alert(message);
+
+    // Set high score
     if (correct > currentHighScore) {
         localStorage.setItem("highScore", correct);
         document.getElementById("high-score").innerHTML = correct;
@@ -207,12 +214,32 @@ const quizQuestions = [
         answer: "JavaScript Object Notation"
     },
     {
-        question: "Where you can read more?",
+        question: "What is Syntax?",
         choices: [
-           { text: "The Library" },
-           { text: "Documentation" },
-           { text: "Your room" },
-           { text: "The back of your computer" }
+           { text: "Grammar for code" },
+           { text: "A method of multiplication for variables" },
+           { text: "When something is without tax" },
+           { text: "None of these options" }
+        ],
+        answer: "Grammar for code"
+    },
+    {
+        question: "What does DRY stand for?",
+        choices: [
+           { text: "Didn't Read Yesterday" },
+           { text: "Document Relay Yelp" },
+           { text: "Do Right Yes" },
+           { text: "Don't Repeat Yourself" }
+        ],
+        answer: "Do Not Repeat Yourself"
+    },
+    {
+        question: "What is the language of the Web?",
+        choices: [
+           { text: "English" },
+           { text: "Binary" },
+           { text: "Javascript" },
+           { text: "Python" }
         ],
         answer: "Documentation"
     }
