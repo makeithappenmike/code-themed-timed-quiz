@@ -45,8 +45,9 @@ body{
     padding: 10px;
 }
 
-#reTryButton {
+#reTryButton, #nameInput {
     display: none;
+    
 }
 
 #startButton:hover, #reTryButton:hover {

@@ -164,7 +164,7 @@ function finalScore(message) {
 
     // Set message
     var newLine = "\r\n";
-    message += newLine;
+    // message += newLine;
     message += "Final Score: " + correct + "/5";
     questionContainer.textContent = message;
     alert(message);
@@ -174,6 +174,11 @@ function finalScore(message) {
         localStorage.setItem("highScore", correct);
         document.getElementById("high-score").innerHTML = correct;
     };
+
+    // document.getElementById("questionContainer").createElement("br");
+    var nameInput = document.createElement("INPUT");
+    nameInput.setAttribute("type", "text");
+    document.getElementById("questionContainer").appendChild(nameInput);
     
 };
 
