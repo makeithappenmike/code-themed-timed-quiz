@@ -1,7 +1,9 @@
 const startButton = document.getElementById("startButton");
+const reTrytButton = document.getElementById("reTryButton");
 const answerButtonsElement = document.getElementById("answerButton");
 startButton.addEventListener("click", function() {startTimer(10)});
 startButton.addEventListener("click", function() {startQuiz()});
+reTrytButton.addEventListener("click", function() {reTryQuiz()});
 var questionTitle = document.getElementById("questionTitle");
 var questionContainer = document.getElementById("questionContainer");
 var validation = document.getElementById("validation");
@@ -50,7 +52,7 @@ function startTimer(seconds) {
 
 // Start Quiz
 function startQuiz() {
-
+    
     // Set defaults
     correct = 0;
     questionsAsked = 0;
@@ -73,6 +75,40 @@ function startQuiz() {
 
     // Ask next question
     getNextQuestion();
+}; 
+
+// Start Quiz
+function reTryQuiz() {
+    
+    location.reload();
+
+    // allQuestions = [...quizQuestions];
+    // console.log(allQuestions);
+
+    // // Set defaults
+    // correct = 0;
+    // questionsAsked = 0;
+    // activeQuestion = 0;
+    
+    // // Get random question from quizQuestions
+    // allQuestions = quizQuestions.sort(() => Math.random() - .5);
+
+    // // Hide Start button
+    // reTryButton.style.display = "none";
+
+    //  // Show content
+    //  document.getElementById("content").style.display = "block";
+
+    // // Show question 1
+    // questionContainer.style.display = "block";
+
+    // // Increment question count
+    // questionsAsked++;
+
+    // window.location.reload;
+
+    // Ask next question
+    // startQuiz();
 }; 
 
 // Get next question
@@ -146,14 +182,14 @@ function showQuestion(question) {
 function finalScore(message) {
 
     // Show startQuiz button
-    startButton.style.display = "block";
+    reTryButton.style.display = "block";
     // const newGame = document.createElement("button");
     // document.getElementById("questionContainer").appendChild(newGame);
-    startButton.addEventListener("click", function() {restartQuiz()});
+    reTryButton.addEventListener("click", function() {reTryQuiz()});
 
-    function restartQuiz() {
-        window.location.reload;
-    };
+    // function restartQuiz() {
+    //     window.location.reload;
+    // };
 
     // Set Final Score header
     questionTitle.textContent = "FINAL SCORE";

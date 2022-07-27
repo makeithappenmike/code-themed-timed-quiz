@@ -35,7 +35,7 @@ body{
     flex-wrap: wrap;
 }
 
-#startButton {
+#startButton, #reTryButton {
     display: block;
     margin-bottom: 10px;
     background-color: rgb(35, 35, 35);
@@ -45,7 +45,11 @@ body{
     padding: 10px;
 }
 
-#startButton:hover {
+#reTryButton {
+    display: none;
+}
+
+#startButton:hover, #reTryButton:hover {
     background-color: rgb(80, 80, 80);
     border-color: red;
     cursor: pointer;
