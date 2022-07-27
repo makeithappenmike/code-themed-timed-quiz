@@ -77,38 +77,9 @@ function startQuiz() {
     getNextQuestion();
 }; 
 
-// Start Quiz
+// reTry Quiz
 function reTryQuiz() {
-    
     location.reload();
-
-    // allQuestions = [...quizQuestions];
-    // console.log(allQuestions);
-
-    // // Set defaults
-    // correct = 0;
-    // questionsAsked = 0;
-    // activeQuestion = 0;
-    
-    // // Get random question from quizQuestions
-    // allQuestions = quizQuestions.sort(() => Math.random() - .5);
-
-    // // Hide Start button
-    // reTryButton.style.display = "none";
-
-    //  // Show content
-    //  document.getElementById("content").style.display = "block";
-
-    // // Show question 1
-    // questionContainer.style.display = "block";
-
-    // // Increment question count
-    // questionsAsked++;
-
-    // window.location.reload;
-
-    // Ask next question
-    // startQuiz();
 }; 
 
 // Get next question
@@ -183,13 +154,7 @@ function finalScore(message) {
 
     // Show startQuiz button
     reTryButton.style.display = "block";
-    // const newGame = document.createElement("button");
-    // document.getElementById("questionContainer").appendChild(newGame);
     reTryButton.addEventListener("click", function() {reTryQuiz()});
-
-    // function restartQuiz() {
-    //     window.location.reload;
-    // };
 
     // Set Final Score header
     questionTitle.textContent = "FINAL SCORE";
@@ -201,10 +166,7 @@ function finalScore(message) {
     var newLine = "\r\n";
     message += newLine;
     message += "Final Score: " + correct + "/5";
-    // message += newLine;
-    // message += "form here";
     questionContainer.textContent = message;
-    // questionContainer.createElement("section");
     alert(message);
 
     // Set high score
@@ -269,25 +231,26 @@ const quizQuestions = [
            { text: "None of these options" }
         ],
         answer: "Grammar for code"
-    },
-    {
-        question: "What does DRY stand for?",
-        choices: [
-           { text: "Didn't Read Yesterday" },
-           { text: "Document Relay Yelp" },
-           { text: "Do Right Yes" },
-           { text: "Don't Repeat Yourself" }
-        ],
-        answer: "Do Not Repeat Yourself"
-    },
-    {
-        question: "What is the language of the Web?",
-        choices: [
-           { text: "English" },
-           { text: "Binary" },
-           { text: "Javascript" },
-           { text: "Python" }
-        ],
-        answer: "Documentation"
     }
+    ,
+    // {
+    //     question: "What does DRY stand for?",
+    //     choices: [
+    //        { text: "Didn't Read Yesterday" },
+    //        { text: "Document Relay Yelp" },
+    //        { text: "Do Right Yes" },
+    //        { text: "Don't Repeat Yourself" }
+    //     ],
+    //     answer: "Do Not Repeat Yourself"
+    // },
+    // {
+    //     question: "What is the language of the Web?",
+    //     choices: [
+    //        { text: "English" },
+    //        { text: "Binary" },
+    //        { text: "Javascript" },
+    //        { text: "Python" }
+    //     ],
+    //     answer: "Documentation"
+    // }
     ]
