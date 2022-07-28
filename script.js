@@ -176,9 +176,17 @@ function finalScore(message) {
     };
 
     // document.getElementById("questionContainer").createElement("br");
-    var nameInput = document.createElement("INPUT");
-    nameInput.setAttribute("type", "text");
+    var nameInput = document.createElement("input");
+    nameInput.type = "text";
+    nameInput.value = "";
+    var button = document.createElement("button");
+    button.innerHTML = "submit";
     document.getElementById("questionContainer").appendChild(nameInput);
+    document.getElementById("questionContainer").appendChild(button);
+    button.addEventListener("click", function () {
+        console.log(document.getElementById("input").value);
+    })
+    
     
 };
 
