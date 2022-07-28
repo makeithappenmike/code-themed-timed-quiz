@@ -10,6 +10,7 @@ var validation = document.getElementById("validation");
 var correct
 var questionsAsked, questionsRemaining
 var highScore = document.getElementById("high-score");
+var allHighScores = [];
 var currentHighScore = localStorage.getItem("highScore");
 
 let allQuestions, activeQuestion
@@ -176,15 +177,20 @@ function finalScore(message) {
     };
 
     // document.getElementById("questionContainer").createElement("br");
+    var lineBreak = document.createElement("br");
     var nameInput = document.createElement("input");
     nameInput.type = "text";
     nameInput.value = "";
     var button = document.createElement("button");
     button.innerHTML = "submit";
+    document.getElementById("questionContainer").appendChild(lineBreak);
     document.getElementById("questionContainer").appendChild(nameInput);
     document.getElementById("questionContainer").appendChild(button);
     button.addEventListener("click", function () {
-        console.log(document.getElementById("input").value);
+        allHighScores = allHighScores.push(nameInput.value);
+        localStorage.setItem("allHighScores", allHighScores);
+        allHighScores.push(nameInput.value);
+        console.log(allHighScores);
     })
     
     
