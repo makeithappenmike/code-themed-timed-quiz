@@ -45,12 +45,14 @@ body{
     font-style: italic;
 } */
 
-#input {
-    margin-top: 10px;
+input {
+    height: 20px;
+    width: 250px;
 }
 
 #submitButton {
     /* display: block; */
+    font-size: .75em;;
     margin-left: 10px;
     background-color: rgb(35, 35, 35);
     border: 1px solid black;

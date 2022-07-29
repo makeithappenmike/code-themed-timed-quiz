@@ -197,8 +197,11 @@ function finalScore(message) {
     // var newName = nameInput.value;
     var submitButton = document.createElement("submitButton");
     var highScoreContainer = document.createElement("highScoreContainer");
+    var submitHighScoreContainer = document.createElement("submitHighScoreContainer");
+
 
     // Set attributes
+    submitHighScoreContainer.innerHTML =`<section id="submitHighScoreContainer"></section>`
     nameInput.type = "text";
     nameInput.value = "";
     submitButton.innerHTML = "SUBMIT";
@@ -215,9 +218,10 @@ function finalScore(message) {
     `;
 
     // Add new elements to the screen
-    document.getElementById("questionContainer").appendChild(lineBreak);
-    document.getElementById("questionContainer").appendChild(nameInput);
-    document.getElementById("questionContainer").appendChild(submitButton);
+    document.getElementById("questionContainer").appendChild(submitHighScoreContainer);
+    document.getElementById("submitHighScoreContainer").appendChild(lineBreak);
+    document.getElementById("submitHighScoreContainer").appendChild(nameInput);
+    document.getElementById("submitHighScoreContainer").appendChild(submitButton);
     document.getElementById("questionContainer").appendChild(highScoreContainer);
     submitButton.addEventListener("click", function () {
         
