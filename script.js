@@ -180,7 +180,7 @@ function finalScore(message) {
     // Set message
     var newLine = "\r\n";
     // message += newLine;
-    message += "Final Score: " + correct + "/5";
+    message += " Final Score: " + correct + "/5";
     questionContainer.textContent = message;
     alert(message);
 
@@ -233,6 +233,7 @@ function finalScore(message) {
         // };
 
         // Loop through current high scores 
+        currentHighScores.sort();
         currentHighScores.forEach(score => {
             // console.log(score);
             // Create a new LI and place it in the questionContainer
