@@ -11,6 +11,7 @@ var correct
 var questionsAsked, questionsRemaining
 var highScore = document.getElementById("high-score");
 var allHighScores = [];
+var newHighScore = {};
 var currentHighScore = localStorage.getItem("highScore");
 
 let allQuestions, activeQuestion
@@ -175,24 +176,35 @@ function finalScore(message) {
         localStorage.setItem("highScore", correct);
         document.getElementById("high-score").innerHTML = correct;
     };
-
-    // document.getElementById("questionContainer").createElement("br");
+    
+    // Handle high scores
+    // Create new elements
     var lineBreak = document.createElement("br");
     var nameInput = document.createElement("input");
+    var newName = nameInput.value;
+    var button = document.createElement("button");
+
+    // Set attributes
     nameInput.type = "text";
     nameInput.value = "";
-    var button = document.createElement("button");
     button.innerHTML = "submit";
+
+    // Add new elements to the screen
     document.getElementById("questionContainer").appendChild(lineBreak);
     document.getElementById("questionContainer").appendChild(nameInput);
     document.getElementById("questionContainer").appendChild(button);
     button.addEventListener("click", function () {
-        allHighScores = allHighScores.push(nameInput.value);
+        
+        // Add High Score to allHighScores
+        newHighScore["name"] = nameInput.value;
+        newHighScore["score"] = correct;
+        allHighScores.push(newHighScore);
+        allHighScores = JSON.stringify(allHighScores);
         localStorage.setItem("allHighScores", allHighScores);
-        allHighScores.push(nameInput.value);
-        console.log(allHighScores);
+        console.log(newName);
+        console.log(correct);
+        console.log(newHighScore);
     })
-    
     
 };
 
