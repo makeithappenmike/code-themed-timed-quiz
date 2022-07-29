@@ -202,7 +202,15 @@ function finalScore(message) {
     nameInput.type = "text";
     nameInput.value = "";
     button.innerHTML = "submit";
-    highScoreContainer.innerHTML = "<h1>HIGH SCORES</h1>";
+    highScoreContainer.innerHTML = `
+    
+    <h1>HIGH SCORES</h1>
+        <section id="highScores">
+            <ul id="scores">
+            </ul>
+        </section>
+
+    `;
 
     // Add new elements to the screen
     document.getElementById("questionContainer").appendChild(lineBreak);
@@ -219,6 +227,14 @@ function finalScore(message) {
             console.log(currentHighScores[0]["score"]);
         };
 
+        currentHighScores.forEach(score => {
+            console.log(score);
+            // Create a new LI and place it in the questionContainer
+            const scoreItem = document.createElement("li");
+            scoreItem.innerHTML = score.name;
+            document.getElementById("questionContainer").appendChild(scoreItem);
+        });
+
         // Add name and score to the New High Score object
         var newHighScore = { "name": nameInput.value, "score": correct };
         console.log("NHS Object", newHighScore);
@@ -233,7 +249,7 @@ function finalScore(message) {
             var updatedHighScores = [...allHighScores]
         };
         
-        document.getElementById("highScoreContainer").appendChild(lineBreak);
+        // document.getElementById("highScoreContainer").appendChild(lineBreak);
         localStorage.setItem("allHighScores", JSON.stringify(updatedHighScores));
         console.log(nameInput.value);
         console.log(correct);
