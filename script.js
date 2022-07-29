@@ -227,11 +227,12 @@ function finalScore(message) {
             console.log(currentHighScores[0]["score"]);
         };
 
+        // Loop through current high scores 
         currentHighScores.forEach(score => {
             console.log(score);
             // Create a new LI and place it in the questionContainer
             const scoreItem = document.createElement("li");
-            scoreItem.innerHTML = score.name;
+            scoreItem.innerHTML = score.name + "<span> got </span>" + score.score + "<span> correct.</span>";
             document.getElementById("questionContainer").appendChild(scoreItem);
         });
 
