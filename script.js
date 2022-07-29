@@ -195,13 +195,14 @@ function finalScore(message) {
     var lineBreak = document.createElement("br");
     var nameInput = document.createElement("input");
     // var newName = nameInput.value;
-    var button = document.createElement("button");
+    var submitButton = document.createElement("submitButton");
     var highScoreContainer = document.createElement("highScoreContainer");
 
     // Set attributes
     nameInput.type = "text";
     nameInput.value = "";
-    button.innerHTML = "submit";
+    submitButton.innerHTML = "SUBMIT";
+    submitButton.setAttribute("id", "submitButton");
     highScoreContainer.style.display = "none";
     highScoreContainer.innerHTML = `
     
@@ -216,11 +217,11 @@ function finalScore(message) {
     // Add new elements to the screen
     document.getElementById("questionContainer").appendChild(lineBreak);
     document.getElementById("questionContainer").appendChild(nameInput);
-    document.getElementById("questionContainer").appendChild(button);
+    document.getElementById("questionContainer").appendChild(submitButton);
     document.getElementById("questionContainer").appendChild(highScoreContainer);
-    button.addEventListener("click", function () {
+    submitButton.addEventListener("click", function () {
         
-        button.hidden = true;
+        submitButton.hidden = true;
         nameInput.hidden = true;
         highScoreContainer.style.display = "block";
 

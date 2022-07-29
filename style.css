@@ -35,7 +35,7 @@ body{
     flex-wrap: wrap;
 }
 
-.viewAll {
+/* .viewAll {
     font-style: italic;
     font-size: .75em;
 }
@@ -43,6 +43,26 @@ body{
 .viewAll:hover {
     cursor: pointer;
     font-style: italic;
+} */
+
+#input {
+    margin-top: 10px;
+}
+
+#submitButton {
+    /* display: block; */
+    margin-left: 10px;
+    background-color: rgb(35, 35, 35);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+}
+
+#submitButton:hover {
+    background-color: rgb(80, 80, 80);
+    border-color: red;
+    cursor: pointer;
 }
 
 #startButton, #reTryButton {
