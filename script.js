@@ -17,16 +17,16 @@ var currentHighScore = localStorage.getItem("highScore");
 let allQuestions, activeQuestion
 
 
-document.getElementById("viewAll").addEventListener("click", function() {
-    console.log("click");
-    document.createElement("highScoreContainer");
-    var highScoreContainer = document.getElementById("highScoreContainer");
-    if (highScoreContainer.style.display === "none") {
-        highScoreContainer.style.display = "block";
-    } else {
-        x.style.display = "none";
-  }
-});
+// document.getElementById("viewAll").addEventListener("click", function() {
+//     console.log("click");
+//     document.createElement("highScoreContainer");
+//     var highScoreContainer = document.getElementById("highScoreContainer");
+//     if (highScoreContainer.style.display === "none") {
+//         highScoreContainer.style.display = "block";
+//     } else {
+//         x.style.display = "none";
+//   }
+// });
 
 
 function setHighScore() {
@@ -194,41 +194,33 @@ function finalScore(message) {
     // Create new elements
     var lineBreak = document.createElement("br");
     var nameInput = document.createElement("input");
-    var newName = nameInput.value;
+    // var newName = nameInput.value;
     var button = document.createElement("button");
+    var highScoreContainer = document.createElement("highScoreContainer");
 
     // Set attributes
     nameInput.type = "text";
     nameInput.value = "";
     button.innerHTML = "submit";
+    highScoreContainer.innerHTML = "<h1>HIGH SCORES</h1>";
 
     // Add new elements to the screen
     document.getElementById("questionContainer").appendChild(lineBreak);
     document.getElementById("questionContainer").appendChild(nameInput);
     document.getElementById("questionContainer").appendChild(button);
+    document.getElementById("questionContainer").appendChild(highScoreContainer);
     button.addEventListener("click", function () {
         
         // Get High Scores from storage
-        // var currentHighScores = localStorage.getItem("allHighScores");
-        // var currentHighScoresParsed = JSON.parse(currentHighScores);
         var currentHighScores = JSON.parse(localStorage.getItem('allHighScores'));
-        // // var allHighScoresParse = JSON.parse(allHighScores);
         console.log("Current", currentHighScores);
-        // console.log("Name", currentHighScores[0]["name"]);
-        // console.log("Name", currentHighScores[1]["score"]);
-        // console.log("Name", currentHighScores[1]["name"]);
-        // console.log("Name", currentHighScores[1]["score"]);
-        // console.log(currentHighScoresParsed);
-        // allHighScores.push(currentHighScores);
-        // console.log(allHighScores);
-
-        // var comment = ["some comment", "another comment", "one more comment"];
-        // var comment = JSON.parse(localStorage.getItem('comment'));
+        if (currentHighScores) {
+            console.log(currentHighScores[0]["name"]);
+            console.log(currentHighScores[0]["score"]);
+        };
 
         // Add name and score to the New High Score object
         var newHighScore = { "name": nameInput.value, "score": correct };
-        // newHighScore["name"] = nameInput.value;
-        // newHighScore["score"] = correct;
         console.log("NHS Object", newHighScore);
 
         // Add the New High Score to AllHighScores
@@ -241,8 +233,7 @@ function finalScore(message) {
             var updatedHighScores = [...allHighScores]
         };
         
-        // var allHighScoresString = JSON.stringify(allHighScores);
-        // localStorage.setItem("comment", JSON.stringify(comment));
+        document.getElementById("highScoreContainer").appendChild(lineBreak);
         localStorage.setItem("allHighScores", JSON.stringify(updatedHighScores));
         console.log(nameInput.value);
         console.log(correct);
