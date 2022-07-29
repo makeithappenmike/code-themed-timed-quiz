@@ -35,6 +35,16 @@ body{
     flex-wrap: wrap;
 }
 
+.viewAll {
+    font-style: italic;
+    font-size: .75em;
+}
+
+.viewAll:hover {
+    cursor: pointer;
+    font-style: italic;
+}
+
 #startButton, #reTryButton {
     display: block;
     margin-bottom: 10px;
