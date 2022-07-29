@@ -202,9 +202,10 @@ function finalScore(message) {
     nameInput.type = "text";
     nameInput.value = "";
     button.innerHTML = "submit";
+    highScoreContainer.style.display = "none";
     highScoreContainer.innerHTML = `
     
-    <h1>HIGH SCORES</h1>
+    <h1 id="highScoreHeader" style="display:">HIGH SCORES</h1>
         <section id="highScores">
             <ul id="scores">
             </ul>
@@ -219,17 +220,21 @@ function finalScore(message) {
     document.getElementById("questionContainer").appendChild(highScoreContainer);
     button.addEventListener("click", function () {
         
+        button.hidden = true;
+        nameInput.hidden = true;
+        highScoreContainer.style.display = "block";
+
         // Get High Scores from storage
         var currentHighScores = JSON.parse(localStorage.getItem('allHighScores'));
-        console.log("Current", currentHighScores);
-        if (currentHighScores) {
-            console.log(currentHighScores[0]["name"]);
-            console.log(currentHighScores[0]["score"]);
-        };
+        // console.log("Current", currentHighScores);
+        // if (currentHighScores) {
+        //     console.log(currentHighScores[0]["name"]);
+        //     console.log(currentHighScores[0]["score"]);
+        // };
 
         // Loop through current high scores 
         currentHighScores.forEach(score => {
-            console.log(score);
+            // console.log(score);
             // Create a new LI and place it in the questionContainer
             const scoreItem = document.createElement("li");
             scoreItem.innerHTML = score.name + "<span> got </span>" + score.score + "<span> correct.</span>";
@@ -238,11 +243,11 @@ function finalScore(message) {
 
         // Add name and score to the New High Score object
         var newHighScore = { "name": nameInput.value, "score": correct };
-        console.log("NHS Object", newHighScore);
+        // console.log("NHS Object", newHighScore);
 
         // Add the New High Score to AllHighScores
         allHighScores.push(newHighScore);
-        console.log("New High Scores", allHighScores);
+        // console.log("New High Scores", allHighScores);
         
         if (currentHighScores) {
             var updatedHighScores = [...allHighScores, ...currentHighScores];
@@ -252,9 +257,9 @@ function finalScore(message) {
         
         // document.getElementById("highScoreContainer").appendChild(lineBreak);
         localStorage.setItem("allHighScores", JSON.stringify(updatedHighScores));
-        console.log(nameInput.value);
-        console.log(correct);
-        console.log(newHighScore);
+        // console.log(nameInput.value);
+        // console.log(correct);
+        // console.log(newHighScore);
     })
     
 };
