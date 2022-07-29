@@ -16,24 +16,10 @@ var currentHighScore = localStorage.getItem("highScore");
 
 let allQuestions, activeQuestion
 
-
-// document.getElementById("viewAll").addEventListener("click", function() {
-//     console.log("click");
-//     document.createElement("highScoreContainer");
-//     var highScoreContainer = document.getElementById("highScoreContainer");
-//     if (highScoreContainer.style.display === "none") {
-//         highScoreContainer.style.display = "block";
-//     } else {
-//         x.style.display = "none";
-//   }
-// });
-
 // May need to remove this if we're not using the high score display
 function setHighScore() {
     if (!currentHighScore) {
-        // document.getElementById("high-score").innerHTML = "-";
     } else {
-    // document.getElementById("high-score").innerHTML = currentHighScore;
 };
 }; setHighScore();
 
@@ -158,7 +144,6 @@ function showQuestion(question) {
                     getNextQuestion();
                 };
         }
-
         });
 
     });
@@ -187,14 +172,12 @@ function finalScore(message) {
     // Set high score
     if (correct > currentHighScore) {
         localStorage.setItem("highScore", correct);
-        // document.getElementById("high-score").innerHTML = correct;
     };
     
     // Handle high scores
     // Create new elements
     var lineBreak = document.createElement("br");
     var nameInput = document.createElement("input");
-    // var newName = nameInput.value;
     var submitButton = document.createElement("submitButton");
     var highScoreContainer = document.createElement("highScoreContainer");
     var submitHighScoreContainer = document.createElement("submitHighScoreContainer");
@@ -239,7 +222,6 @@ function finalScore(message) {
 
         // Add the New High Score to AllHighScores
         currentHighScores.push(newHighScore);
-        // allHighScores.push(newHighScore);
 
         // Sort high scores by score
         currentHighScores = currentHighScores.sort(function (a, b) {
@@ -325,25 +307,4 @@ const quizQuestions = [
         ],
         answer: "Grammar for code"
     }
-    ,
-    // {
-    //     question: "What does DRY stand for?",
-    //     choices: [
-    //        { text: "Didn't Read Yesterday" },
-    //        { text: "Document Relay Yelp" },
-    //        { text: "Do Right Yes" },
-    //        { text: "Don't Repeat Yourself" }
-    //     ],
-    //     answer: "Do Not Repeat Yourself"
-    // },
-    // {
-    //     question: "What is the language of the Web?",
-    //     choices: [
-    //        { text: "English" },
-    //        { text: "Binary" },
-    //        { text: "Javascript" },
-    //        { text: "Python" }
-    //     ],
-    //     answer: "Documentation"
-    // }
     ]
