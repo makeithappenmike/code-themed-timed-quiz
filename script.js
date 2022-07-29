@@ -11,7 +11,7 @@ var correct
 var questionsAsked, questionsRemaining
 var highScore = document.getElementById("high-score");
 var allHighScores = [];
-var newHighScore = {};
+// var newHighScore = {};
 var currentHighScore = localStorage.getItem("highScore");
 
 let allQuestions, activeQuestion
@@ -208,16 +208,43 @@ function finalScore(message) {
     document.getElementById("questionContainer").appendChild(button);
     button.addEventListener("click", function () {
         
-        // Add High Score to allHighScores
-        allHighScores = localStorage.getItem("allHighScores");
-        var allHighScoresParse = JSON.parse(allHighScores);
-        console.log(allHighScoresParse);
-        newHighScore["name"] = nameInput.value;
-        newHighScore["score"] = correct;
-        allHighScoresParse.push(newHighScore);
-        var allHighScoresString = JSON.stringify(allHighScores);
-        localStorage.setItem("allHighScores", allHighScoresString);
-        console.log(newName);
+        // Get High Scores from storage
+        // var currentHighScores = localStorage.getItem("allHighScores");
+        // var currentHighScoresParsed = JSON.parse(currentHighScores);
+        var currentHighScores = JSON.parse(localStorage.getItem('allHighScores'));
+        // // var allHighScoresParse = JSON.parse(allHighScores);
+        console.log("Current", currentHighScores);
+        // console.log("Name", currentHighScores[0]["name"]);
+        // console.log("Name", currentHighScores[1]["score"]);
+        // console.log("Name", currentHighScores[1]["name"]);
+        // console.log("Name", currentHighScores[1]["score"]);
+        // console.log(currentHighScoresParsed);
+        // allHighScores.push(currentHighScores);
+        // console.log(allHighScores);
+
+        // var comment = ["some comment", "another comment", "one more comment"];
+        // var comment = JSON.parse(localStorage.getItem('comment'));
+
+        // Add name and score to the New High Score object
+        var newHighScore = { "name": nameInput.value, "score": correct };
+        // newHighScore["name"] = nameInput.value;
+        // newHighScore["score"] = correct;
+        console.log("NHS Object", newHighScore);
+
+        // Add the New High Score to AllHighScores
+        allHighScores.push(newHighScore);
+        console.log("New High Scores", allHighScores);
+        
+        if (currentHighScores) {
+            var updatedHighScores = [...allHighScores, ...currentHighScores];
+        } else {
+            var updatedHighScores = [...allHighScores]
+        };
+        
+        // var allHighScoresString = JSON.stringify(allHighScores);
+        // localStorage.setItem("comment", JSON.stringify(comment));
+        localStorage.setItem("allHighScores", JSON.stringify(updatedHighScores));
+        console.log(nameInput.value);
         console.log(correct);
         console.log(newHighScore);
     })
