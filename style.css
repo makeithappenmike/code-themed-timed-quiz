@@ -2,6 +2,7 @@
     --background-color: rgb(35, 35, 35);
     --border: 1px solid black;
     --hoverBorderColor: red;
+    --hoverBackgroundColor: rgb(80, 80, 80);
     --color: white;
 }
 
@@ -58,7 +59,7 @@ input {
 }
 
 #submitButton:hover {
-    background-color: var(--background-color);
+    background-color: var(--hoverBackgroundColor);
     border-color: var(--hoverBorderColor);
     cursor: pointer;
 }
@@ -79,7 +80,7 @@ input {
 }
 
 #startButton:hover, #reTryButton:hover {
-    background-color: rgb(80, 80, 80);
+    background-color: var(--hoverBackgroundColor);
     border-color: var(--hoverBorderColor);
     cursor: pointer;
 }
@@ -102,7 +103,7 @@ input {
 }
 
 #questionContainer li {
-    background-color: rgb(35, 35, 35);
+    background-color: var(--background-color);
     border: var(--border);
     border-radius: 5px;
     margin-top: 2px;
@@ -123,7 +124,7 @@ input {
 }
 
 #questionContainer li:hover {
-    background-color: rgb(80, 80, 80);
+    background-color: var(--hoverBackgroundColor);
     border-color: var(--hoverBorderColor);
     cursor: pointer;
 }
