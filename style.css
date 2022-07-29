@@ -45,6 +45,10 @@ body{
     font-style: italic;
 } */
 
+#scoreLi {
+    list-style: none;
+}
+
 input {
     height: 20px;
     width: 250px;

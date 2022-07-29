@@ -241,12 +241,21 @@ function finalScore(message) {
         currentHighScores.push(newHighScore);
         // allHighScores.push(newHighScore);
 
+        // Sort high scores by score
+        currentHighScores = currentHighScores.sort(function (a, b) {
+            return a[1] - b[1];
+        });
+
+        console.log(currentHighScores);
+
         if (currentHighScores) {
+
             // Loop through current high scores 
             currentHighScores.forEach(score => {
-            // console.log(score);
+
             // Create a new LI and place it in the questionContainer
             const scoreItem = document.createElement("li");
+            scoreItem.setAttribute("id", "scoreLi")
             scoreItem.innerHTML = score.name + "<span> got </span>" + score.score + "<span> correct.</span>";
             document.getElementById("questionContainer").appendChild(scoreItem);
         });
@@ -257,14 +266,6 @@ function finalScore(message) {
             localStorage.setItem("allHighScores", JSON.stringify(updatedHighScores));
         };
 
-
-        // currentHighScores = currentHighScores.sort(function (a, b) {
-        //     return a[1] - b[1];
-        // });
-        console.log(currentHighScores);
-
-        
-        
     })
     
 };
