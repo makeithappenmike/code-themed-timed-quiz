@@ -9,7 +9,7 @@ var questionContainer = document.getElementById("questionContainer");
 var validation = document.getElementById("validation");
 var correct
 var questionsAsked, questionsRemaining
-var highScore = document.getElementById("high-score");
+// var highScore = document.getElementById("high-score");
 var allHighScores = [];
 // var newHighScore = {};
 var currentHighScore = localStorage.getItem("highScore");
@@ -28,12 +28,12 @@ let allQuestions, activeQuestion
 //   }
 // });
 
-
+// May need to remove this if we're not using the high score display
 function setHighScore() {
     if (!currentHighScore) {
-        document.getElementById("high-score").innerHTML = "-";
+        // document.getElementById("high-score").innerHTML = "-";
     } else {
-    document.getElementById("high-score").innerHTML = currentHighScore;
+    // document.getElementById("high-score").innerHTML = currentHighScore;
 };
 }; setHighScore();
 
@@ -187,7 +187,7 @@ function finalScore(message) {
     // Set high score
     if (correct > currentHighScore) {
         localStorage.setItem("highScore", correct);
-        document.getElementById("high-score").innerHTML = correct;
+        // document.getElementById("high-score").innerHTML = correct;
     };
     
     // Handle high scores
@@ -226,6 +226,10 @@ function finalScore(message) {
 
         // Get High Scores from storage
         var currentHighScores = JSON.parse(localStorage.getItem('allHighScores'));
+        currentHighScores = currentHighScores.sort(function (a, b) {
+            return a[1] - b[1];
+        });
+        console.log(currentHighScores);
         // console.log("Current", currentHighScores);
         // if (currentHighScores) {
         //     console.log(currentHighScores[0]["name"]);
@@ -233,7 +237,6 @@ function finalScore(message) {
         // };
 
         // Loop through current high scores 
-        currentHighScores.sort();
         currentHighScores.forEach(score => {
             // console.log(score);
             // Create a new LI and place it in the questionContainer
