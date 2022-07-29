@@ -201,7 +201,7 @@ function finalScore(message) {
 
 
     // Set attributes
-    submitHighScoreContainer.innerHTML =`<section id="submitHighScoreContainer"></section>`
+    submitHighScoreContainer.innerHTML =`<section id="submitHighScoreContainer"><p><strong>Add your initials to track your score!</strong></p></section>`
     nameInput.type = "text";
     nameInput.value = "";
     submitButton.innerHTML = "SUBMIT";
@@ -223,6 +223,7 @@ function finalScore(message) {
     document.getElementById("submitHighScoreContainer").appendChild(nameInput);
     document.getElementById("submitHighScoreContainer").appendChild(submitButton);
     document.getElementById("questionContainer").appendChild(highScoreContainer);
+    
     submitButton.addEventListener("click", function () {
         
         submitButton.hidden = true;
@@ -230,45 +231,40 @@ function finalScore(message) {
         highScoreContainer.style.display = "block";
 
         // Get High Scores from storage
+        var currentHighScores;
         var currentHighScores = JSON.parse(localStorage.getItem('allHighScores'));
-        currentHighScores = currentHighScores.sort(function (a, b) {
-            return a[1] - b[1];
-        });
-        console.log(currentHighScores);
-        // console.log("Current", currentHighScores);
-        // if (currentHighScores) {
-        //     console.log(currentHighScores[0]["name"]);
-        //     console.log(currentHighScores[0]["score"]);
-        // };
 
-        // Loop through current high scores 
-        currentHighScores.forEach(score => {
+        // Add name and score to the New High Score object
+        var newHighScore = { "name": nameInput.value, "score": correct };
+
+        // Add the New High Score to AllHighScores
+        currentHighScores.push(newHighScore);
+        // allHighScores.push(newHighScore);
+
+        if (currentHighScores) {
+            // Loop through current high scores 
+            currentHighScores.forEach(score => {
             // console.log(score);
             // Create a new LI and place it in the questionContainer
             const scoreItem = document.createElement("li");
             scoreItem.innerHTML = score.name + "<span> got </span>" + score.score + "<span> correct.</span>";
             document.getElementById("questionContainer").appendChild(scoreItem);
         });
-
-        // Add name and score to the New High Score object
-        var newHighScore = { "name": nameInput.value, "score": correct };
-        // console.log("NHS Object", newHighScore);
-
-        // Add the New High Score to AllHighScores
-        allHighScores.push(newHighScore);
-        // console.log("New High Scores", allHighScores);
-        
-        if (currentHighScores) {
             var updatedHighScores = [...allHighScores, ...currentHighScores];
+            localStorage.setItem("allHighScores", JSON.stringify(updatedHighScores));
         } else {
-            var updatedHighScores = [...allHighScores]
+            var updatedHighScores = [...allHighScores];
+            localStorage.setItem("allHighScores", JSON.stringify(updatedHighScores));
         };
+
+
+        // currentHighScores = currentHighScores.sort(function (a, b) {
+        //     return a[1] - b[1];
+        // });
+        console.log(currentHighScores);
+
         
-        // document.getElementById("highScoreContainer").appendChild(lineBreak);
-        localStorage.setItem("allHighScores", JSON.stringify(updatedHighScores));
-        // console.log(nameInput.value);
-        // console.log(correct);
-        // console.log(newHighScore);
+        
     })
     
 };
