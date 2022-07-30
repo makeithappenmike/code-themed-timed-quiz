@@ -217,9 +217,9 @@ function finalScore(message) {
         highScoreContainer.style.display = "block";
 
         // Get High Scores from local storage
-        var currentHighScores;
-        if (localStorage.getItem('allHighScores')) {
-        currentHighScores = JSON.parse(localStorage.getItem('allHighScores'));
+        var currentHighScores = [];
+        if (localStorage.getItem("allHighScores") != null) {
+            currentHighScores = JSON.parse(localStorage.getItem('allHighScores'));
         };
 
         // Add name and score to the New High Score object
