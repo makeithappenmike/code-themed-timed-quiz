@@ -39,6 +39,20 @@ body{
     flex-wrap: wrap;
 }
 
+#rules {
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: var(--hoverBackgroundColor);
+    border: 1px solid;
+    border-color: var(--hoverBorderColor);
+    border-radius: 5px;
+    color: var(--color);
+    
+}
+
 #scoreLi {
     list-style: none;
 }
@@ -67,7 +81,7 @@ input {
 #startButton, #reTryButton {
     display: block;
     margin-bottom: 10px;
-    background-color: rgb(35, 35, 35);
+    background-color: var(--background-color);
     border: var(--border);
     border-radius: 5px;
     color: var(--color);

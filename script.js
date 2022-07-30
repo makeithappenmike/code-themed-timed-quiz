@@ -1,24 +1,26 @@
 const startButton = document.getElementById("startButton");
+const rules = document.getElementById("rules");
 const reTrytButton = document.getElementById("reTryButton");
 const answerButtonsElement = document.getElementById("answerButton");
 // Time is set here in startTimer
-startButton.addEventListener("click", function() {startTimer(10)});
+startButton.addEventListener("click", function() {startTimer(30)});
 startButton.addEventListener("click", function() {startQuiz()});
 reTrytButton.addEventListener("click", function() {reTryQuiz()});
 var questionTitle = document.getElementById("questionTitle");
 var questionContainer = document.getElementById("questionContainer");
 var validation = document.getElementById("validation");
-var correct
-var questionsAsked, questionsRemaining
+var correct;
+let counter;
+var questionsAsked, questionsRemaining;
 var allHighScores = [];
 var currentHighScore = localStorage.getItem("highScore");
-let allQuestions, activeQuestion
+let allQuestions, activeQuestion;
 
 // Create timer
 function startTimer(seconds) {
 
     // Set timer to value passed above
-    let counter = seconds;
+    counter = seconds;
 
     // Timer
     var timeAllowed = setInterval(() => {
@@ -53,8 +55,9 @@ function startQuiz() {
     // Get random question from quizQuestions
     allQuestions = quizQuestions.sort(() => Math.random() - .5);
 
-    // Hide Start button
+    // Hide Start button and rules
     startButton.style.display = "none";
+    rules.style.display = "none";
 
      // Show content
      document.getElementById("content").style.display = "block";
@@ -122,6 +125,9 @@ function showQuestion(question) {
                 };
             } 
             else if (event.target.textContent != quizQuestions[activeQuestion].answer) {
+                
+                // Decrement time 5 seconds
+                counter+=-5;
 
                 // Show results below
                 validation.textContent = "Incorrect! Current Score: " + correct + "/5";
