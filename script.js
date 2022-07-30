@@ -186,7 +186,7 @@ function finalScore(message) {
     highScoreContainer.style.display = "none";
     highScoreContainer.innerHTML = `
     
-    <h1 id="highScoreHeader" style="display:">HIGH SCORES</h1>
+    <h1 id="highScoreHeader" style="display:">ALL SCORES</h1>
         <section id="highScores">
             <ul id="scores">
             </ul>
@@ -205,6 +205,7 @@ function finalScore(message) {
     submitButton.addEventListener("click", function () {
         
         // Update attributes
+        submitHighScoreContainer.hidden = true;
         submitButton.hidden = true;
         nameInput.hidden = true;
         highScoreContainer.style.display = "block";

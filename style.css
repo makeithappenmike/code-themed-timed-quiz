@@ -20,6 +20,7 @@ body{
 .nav {
     width: 100%;
     display: flex;
+    justify-content: flex-start;
 }
 
 .nav-item {
@@ -108,7 +109,11 @@ input {
     margin-bottom: 2px;
     padding: 2px;
     width: 100%;
-    min-width: 200px;
+    /* min-width: 150px; */
+    text-align: center;
+}
+
+#questionTitle {
     text-align: center;
 }
 
@@ -119,6 +124,7 @@ input {
 #questionContainer {
     display: none;
     padding-right: 15px;
+    width: 100%;
 }
 
 #questionContainer li:hover {
@@ -137,3 +143,21 @@ input {
     text-align: center;
     font-style: italic;
 }
+
+@media screen and (max-width: 600px) {
+    .nav {
+        justify-content: center;
+    }
+
+    #questionContainer li {
+        justify-content: center;
+        text-align: center;
+        margin: 10px auto;
+    }
+
+    * {
+        font-size: 1em;
+    }
+}
+
+
