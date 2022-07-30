@@ -1,6 +1,7 @@
 const startButton = document.getElementById("startButton");
 const reTrytButton = document.getElementById("reTryButton");
 const answerButtonsElement = document.getElementById("answerButton");
+// Time is set here in startTimer
 startButton.addEventListener("click", function() {startTimer(10)});
 startButton.addEventListener("click", function() {startQuiz()});
 reTrytButton.addEventListener("click", function() {reTryQuiz()});
@@ -9,35 +10,25 @@ var questionContainer = document.getElementById("questionContainer");
 var validation = document.getElementById("validation");
 var correct
 var questionsAsked, questionsRemaining
-// var highScore = document.getElementById("high-score");
 var allHighScores = [];
-// var newHighScore = {};
 var currentHighScore = localStorage.getItem("highScore");
-
 let allQuestions, activeQuestion
-
-// May need to remove this if we're not using the high score display
-function setHighScore() {
-    if (!currentHighScore) {
-    } else {
-};
-}; setHighScore();
 
 // Create timer
 function startTimer(seconds) {
 
-    // Set timer to value passed onClick
+    // Set timer to value passed above
     let counter = seconds;
 
     // Timer
     var timeAllowed = setInterval(() => {
-        console.log(counter);
+        // console.log(counter);
 
         // Decrement timer
         counter--;
         document.getElementById("time-remaining").innerHTML = counter + 1;
 
-        // When counter reaches 0, stop counting down
+        // When counter reaches 0 or all questions have been asked, stop counting down
         if (counter < 0) {
             document.getElementById("time-remaining").innerHTML = counter;
             clearInterval(timeAllowed);
@@ -78,7 +69,7 @@ function startQuiz() {
     getNextQuestion();
 }; 
 
-// reTry Quiz
+// reTry Quiz (reloads page)
 function reTryQuiz() {
     location.reload();
 }; 
@@ -125,6 +116,7 @@ function showQuestion(question) {
                 if (allQuestions.length == 0) {
                     finalScore("Quiz Complete!");
                 } else {
+
                     // Ask next question
                     getNextQuestion();
                 };
@@ -137,9 +129,11 @@ function showQuestion(question) {
                 // Remove activeQuestion from available questions
                 allQuestions.shift();
 
+                // If there are no more quesitons left
                 if (allQuestions.length == 0) {
                     finalScore("Quiz Complete!");
                 } else {
+
                     // Ask next question
                     getNextQuestion();
                 };
@@ -154,6 +148,8 @@ function finalScore(message) {
 
     // Show startQuiz button
     reTryButton.style.display = "block";
+
+    // When the button is clicked
     reTryButton.addEventListener("click", function() {reTryQuiz()});
 
     // Set Final Score header
@@ -163,13 +159,11 @@ function finalScore(message) {
     validation.textContent = "";
 
     // Set message
-    var newLine = "\r\n";
-    // message += newLine;
     message += " Final Score: " + correct + "/5";
     questionContainer.textContent = message;
     alert(message);
 
-    // Set high score
+    // Set high score to local storage
     if (correct > currentHighScore) {
         localStorage.setItem("highScore", correct);
     };
@@ -207,15 +201,17 @@ function finalScore(message) {
     document.getElementById("submitHighScoreContainer").appendChild(submitButton);
     document.getElementById("questionContainer").appendChild(highScoreContainer);
     
+    // When the submit button is clicked
     submitButton.addEventListener("click", function () {
         
+        // Update attributes
         submitButton.hidden = true;
         nameInput.hidden = true;
         highScoreContainer.style.display = "block";
 
-        // Get High Scores from storage
+        // Get High Scores from local storage
         var currentHighScores;
-        var currentHighScores = JSON.parse(localStorage.getItem('allHighScores'));
+        currentHighScores = JSON.parse(localStorage.getItem('allHighScores'));
 
         // Add name and score to the New High Score object
         var newHighScore = { "name": nameInput.value, "score": correct };
@@ -223,12 +219,12 @@ function finalScore(message) {
         // Add the New High Score to AllHighScores
         currentHighScores.push(newHighScore);
 
-        // Sort high scores by score
-        currentHighScores = currentHighScores.sort(function (a, b) {
-            return a[1] - b[1];
-        });
+        // Sort high scores by score (this isn't currently working, muting for now)
+        // currentHighScores = currentHighScores.sort(function (a, b) {
+        //     return a[1] - b[1];
+        // });
 
-        console.log(currentHighScores);
+        // console.log(currentHighScores);
 
         if (currentHighScores) {
 
@@ -241,6 +237,7 @@ function finalScore(message) {
             scoreItem.innerHTML = score.name + "<span> got </span>" + score.score + "<span> correct.</span>";
             document.getElementById("questionContainer").appendChild(scoreItem);
         });
+            // Update the highScores array and set to local storage
             var updatedHighScores = [...allHighScores, ...currentHighScores];
             localStorage.setItem("allHighScores", JSON.stringify(updatedHighScores));
         } else {
