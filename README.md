@@ -1,4 +1,4 @@
-# Timed Quiz
+# Code Themed Timed Quiz
 
 Here's what the code does:
 
@@ -10,7 +10,7 @@ The site uses a mix of flex / media queries to handle responsiveness.
 
 When a User clicks "Start", a timer set for 30 seconds starts and they're asked a series of questions. If they choose correctly, their score goes up. If they choose incorrectly, their score does not go up. If they run out of time, the quiz ends. If they answer all questions the quiz ends. At the end, they can save their name/initials and score and retry the quiz if they want. Currently, the same questions will be asked.
 
-View the site here: https://makeithappenmike.github.io/timed-quiz/
+View the site here: https://makeithappenmike.github.io/code-themed-timed-quiz/
 
 Contributions by Michael Martens
 

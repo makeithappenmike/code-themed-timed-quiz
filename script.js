@@ -216,7 +216,7 @@ function finalScore(message) {
         nameInput.hidden = true;
         highScoreContainer.style.display = "block";
 
-        // Get High Scores from local storage
+        // Get High Scores from local storage and create high score array
         var currentHighScores = [];
         if (localStorage.getItem("allHighScores") != null) {
             currentHighScores = JSON.parse(localStorage.getItem('allHighScores'));
